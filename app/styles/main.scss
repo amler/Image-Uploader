@@ -1,0 +1,33 @@
+// bower:scss
+// endbower
+
+body {
+    background: #fafafa;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    color: #333;
+}
+
+.photo-uploader {
+    width: 200px;
+    height: 30px;
+    border-radius: 5px;
+}
+
+.submit-photo {
+    width: 100px;
+    height: 30px;
+    border-radius: 5px;
+    background-color: #3385D6;
+    border: none;
+    outline: none;
+
+    &:hover {
+        background-color: #66A3E0;
+    }
+
+    &:active {
+        background-color: #06C;
+        color: #fff;
+    }
+
+}
