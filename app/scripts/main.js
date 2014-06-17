@@ -62,14 +62,31 @@ $('.submit-photo').click(function() {
 });
 
 
-var ImageCollection = Parse.Collection.extend({
-  model: Photo
-});
-var collection = new ImageCollection();
+function retrieve(){
+    var register = Parse.Object.extend("register");
+    var query = new Parse.Query(register);
+    var self = this;
+    var email = this.$("#retrieve-email").val();
+    query.equalTo("email", email);
+    query.find({
+    success: function(results) {
+    alert("Successfully retrieved " + results.length + ".");
+        imageURLs = [];  
+    for (var i = 0; i < results.length; i++) {
+        var object = results[i];
+        var image=imageURLs.push(object.get('image'));
+        //var image =results[i].get("image").url;
+        if(imageURLs.length > 0){
+          $('#color').attr('src', imageURLs[0]);
+        }
+       }
+    },
+  error: function(error) {
+    alert("Error: " + error.code + " " + error.message);
+  }
+	});
+}
 
-var profilePhoto = photo.get("description");
-console.log(profilePhoto);
-//$("profileImg")[0].src = profilePhoto.url();
 
 
 // var PhotoView = Parse.View.extend({
