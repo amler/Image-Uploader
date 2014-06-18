@@ -43,7 +43,7 @@
 
         <!-- Detail > image-detail -->
         <script type="text/template" class="detail-display-template">
-            <img src="<%= photo.get('photo').url() %>" />
+            <img src="<%= photo.url() %>" />
             <div class="caption-container">
                 <p><%= description %></p>
             </div>
@@ -51,7 +51,7 @@
         
         <!-- Thumbnails > photo-container -->
         <script type="text/template" class="thumbnails-display-template">
-            <img src="<%= photo.get('photo').url() %>">
+            <img src="<%= photo.url() %>">
             <p><%= description %></p>
         </script>
 
