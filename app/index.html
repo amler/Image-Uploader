@@ -25,7 +25,7 @@
         <![endif]-->
         <div class="header">
             <div class="uploader-wrap">
-                <input type="file" class="profilePhotoFileUpload">
+                <input type="file" class="image-upload">
                 <input class="photo-uploader" placeholder="Upload Image">
                 <button class="submit-photo">Upload</button>
             </div>
@@ -44,6 +44,7 @@
         <!-- Detail > image-detail -->
         <script type="text/template" class="detail-display-template">
             <img src="<%= photo.url() %>" />
+            <%= photo.get('photo').url() %>
             <div class="caption-container">
                 <p><%= description %></p>
             </div>
@@ -51,7 +52,7 @@
         
         <!-- Thumbnails > photo-container -->
         <script type="text/template" class="thumbnails-display-template">
-            <img src="<%= photo.url() %>">
+            <img class="thumbnail-image" src="">
             <p><%= description %></p>
         </script>
 
@@ -73,6 +74,8 @@
         </script>
 
         <!-- build:js({app,.tmp}) scripts/main.js -->
+        <script src="scripts/model-collection.js"></script>
+        <script src="scripts/views.js"></script>
         <script src="scripts/main.js"></script>
         <!-- endbuild -->
 </body>

@@ -19,10 +19,10 @@ body {
         margin: 0 auto;
         width: 920px;
 
-        .profilePhotoFileUpload::-webkit-file-upload-button {
+        .image-upload::-webkit-file-upload-button {
             visibility: hidden;
         }
-        .profilePhotoFileUpload {
+        .image-upload {
             display: block;
             height: 30px;
             width: 200px;

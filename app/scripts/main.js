@@ -1,94 +1,28 @@
 Parse.initialize('9FROBMPXAABxeBZaG0K7j8wlnPtaM5sFYJLeXE9B', 'blDjPSaVIg7SK7jfGk9v1tMDQXXiheID6tgwFgRH');
 
-var Photo = Parse.Object.extend({
-	className: 'Photo'
-});
-
-
-//////////////////////////////
-// Thumbnail View
-//////////////////////////////
-
-/*var PhotoView = Parse.View.extend({
-	template: _.template($('.thumbnails-display-template').text()),
-
-	className: 'image-holder',
-
-	initialize: function() {
-		$('.photo-container').append(this.el);
-		this.render();
-	},
-
-	render: function(){
-		var renderedTemplate = this.template(this.model.attributes)
-    // empty div // html render the variable above
-		this.$el.html(renderedTemplate);
-	}
-});*/
-
-//////////////////////////////
-// Detail View
-//////////////////////////////
-
-var DetailView = Parse.View.extend({
-	template: _.template($('.detail-display-template').text()),
-	className: 'main-image-holder', 
-		
-	initialize: function() {
-		retrieve();
-	},
-
-	// render: function(){
-	// 	var renderedTemplate = this.template(this.model.attributes)
- //    // empty div // html render the variable above
-	// 	this.$el.html(renderedTemplate);
-	// },
-})
-
-function retrieve() {
-	var Photo = Parse.Object.extend("Photo");
-	console.log(Photo);
-	debugger
-	var query = new Parse.Query(Photo);
-	query.descending('createdAt');
-	query.limit(25);
-	query.find({
-		success: function (results) {
-		alert("Successfully retrieved " + results.length + ".");
-			var templateFunction =  _.template($('.image-display-template').text());
-			_.each(results, function (photoModel){
-				console.log('photoModel is', photoModel)
-				$('.photo-container').append(templateFunction(photoModel.attributes))
-			})
-		},
-		error: function(error) {
-		alert("Error: " + error.code + " " + error.message);
-		}
-	});
-}
-
-
 //////////////////////////////
 // Instances
 //////////////////////////////
 
-// var thumbnailView = new PhotoView();
-// var mainImageView = new DetailView();
+ var thumbnailView = new PhotoView();
+ //var mainImageView = new DetailView();
 
-var photo = new Photo();
+var photoGallery = new PhotoCollection();
 
-var inputValue;
 
 $('.submit-photo').click(function() {
 
-	var fileUploadControl = $('.profilePhotoFileUpload')[0];
-	console.log(fileUploadControl.files.length);
+	var photo = new Photo();
+	
+	var fileUploadControl = $('.image-upload')[0];
+	// console.log(fileUploadControl.files.length);
 	if (fileUploadControl.files.length > 0) {
 		var file = fileUploadControl.files[0];
 		var name = 'photo.jpg';
 		var parseFile = new Parse.File(name, file);
 		var captionValue = $('.photo-uploader').val();
 	}
+					// done
 	parseFile.save().then(function() {
 	// The file has been saved to Parse.
 	    alert('New object created with objectId: ' + photo.id);
@@ -103,3 +37,50 @@ $('.submit-photo').click(function() {
 	console.log(parseFile);
 	photo.save();
 });
+
+
+
+// joe: use fetch instead of query & add a collection
+// date: ["insert-your-collection-name"].fetch({add:true});
+
+photoGallery.fetch({
+		add: true,
+		success: function (results) {
+			console.log(results);
+			alert("Successfully retrieved " + results.length + ".");
+		},
+		error: function(error) {
+		alert("Error: " + error.code + " " + error.message);
+		}
+	}).done(function(){
+	photoGallery.each(function (photoModel){
+		console.log('photoModel is', photoModel);
+		new PhotoView({model: photoModel});
+	});
+});
+
+/*function retrieve() {
+	var Photo = Parse.Object.extend("Photo");
+	console.log(Photo);
+	debugger
+	var query = new Parse.Query(Photo);
+	query.descending('createdAt');
+	query.limit(25);
+	query.find({
+		success: function (results) {
+		alert("Successfully retrieved " + results.length + ".");
+			_.each(results, function (photoModel){
+				console.log('photoModel is', photoModel)
+			})
+		},
+		error: function(error) {
+		alert("Error: " + error.code + " " + error.message);
+		}
+	});
+}*/
+
+///////////////////////////////////////
+/// references
+///////////////////////////////////////
+// return to this later.
+// http://stackoverflow.com/questions/15291413/backbone-js-master-detail-view-navigation-issue-jsfiddle-included
