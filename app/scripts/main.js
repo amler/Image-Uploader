@@ -4,9 +4,6 @@ Parse.initialize('9FROBMPXAABxeBZaG0K7j8wlnPtaM5sFYJLeXE9B', 'blDjPSaVIg7SK7jfGk
 // Instances
 //////////////////////////////
 
- var thumbnailView = new PhotoView();
- //var mainImageView = new DetailView();
-
 var photoGallery = new PhotoCollection();
 
 
@@ -41,22 +38,22 @@ $('.submit-photo').click(function() {
 
 
 // joe: use fetch instead of query & add a collection
-// date: ["insert-your-collection-name"].fetch({add:true});
+// date: ["insert-your-collection-name"].fetch({add:true}); <<<<< MISSED/DONT UNDERSTAND WHY
 
 photoGallery.fetch({
 		add: true,
 		success: function (results) {
-			console.log(results);
+			console.log('This is the results', results);
 			alert("Successfully retrieved " + results.length + ".");
 		},
 		error: function(error) {
 		alert("Error: " + error.code + " " + error.message);
 		}
 	}).done(function(){
-	photoGallery.each(function (photoModel){
-		console.log('photoModel is', photoModel);
-		new PhotoView({model: photoModel});
-	});
+		photoGallery.each(function (photoModel){
+			console.log('photoModel', photoModel)
+			new PhotoView({model: photoModel});
+		});
 });
 
 /*function retrieve() {

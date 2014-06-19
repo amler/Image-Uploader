@@ -1,7 +1,7 @@
 var detailInstance = null;
 //////////////////////////////
 // Thumbnail View
-//////////////////////////////
+//////////////////////////////	
 
 var PhotoView = Parse.View.extend({
 	template: _.template($('.thumbnails-display-template').text()),
@@ -15,17 +15,21 @@ var PhotoView = Parse.View.extend({
 		// this.model.on('change', this.render)
 		$('.photo-container').append(this.el);
 		this.render();
-		console.log('This is the PhotoView');
+		
 	},
 
 	render: function(){
+		debugger
 		var renderedTemplate = this.template(this.model.attributes);
+		
+		console.log(this.model);
     // empty div // html render the variable above
 		this.$el.html(renderedTemplate);
+
 	},
 
 	showImageDetail: function(){
-		detailInstance = new DetailView({model: this.model.attributes});
+		detailInstance = new DetailView({model: this.model});
 	}
 });
 
