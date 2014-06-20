@@ -1,3 +1,5 @@
+'use strict';
+
 var Photo = Parse.Object.extend({
 	className: 'Photo'
 });

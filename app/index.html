@@ -26,7 +26,7 @@
         <div class="header">
             <div class="uploader-wrap">
                 <input type="file" class="image-upload">
-                <input class="photo-uploader" placeholder="Upload Image">
+                <input class="photo-uploader" placeholder="Enter Caption">
                 <button class="submit-photo">Upload</button>
             </div>
         </div>
@@ -43,17 +43,25 @@
 
         <!-- Detail > image-detail -->
         <script type="text/template" class="detail-display-template">
-            <img src="<%= photo.url() %>" />
-            <%= photo.get('photo').url() %>
-            <div class="caption-container">
-                <p><%= description %></p>
+            <div class="photo-detail">
+                <img src="<%= photo.url() %>" />
+                <div class="caption-container">
+                    <p><%= description %></p>
+                </div>
+            </div>
+            <div class="editor">
+                <input type="file" class="image-upload">
+                <input class="photo-uploader" placeholder="Enter Caption">
+                <button class="submit-photo">Upload</button>
             </div>
         </script>
         
         <!-- Thumbnails > photo-container -->
         <script type="text/template" class="thumbnails-display-template">
-            <img class="thumbnail-image" src="<%= photo.url() %>">
-            <p><%= description %></p>
+            <div class="thumbnail-container">
+                <img class="thumbnail-image" src="<%= photo.url() %>">
+            </div>
+                <p><%= description %></p>
         </script>
 
         <!-- build:js scripts/vendor.js -->

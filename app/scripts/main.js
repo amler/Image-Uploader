@@ -1,11 +1,11 @@
+'use strict';
 Parse.initialize('9FROBMPXAABxeBZaG0K7j8wlnPtaM5sFYJLeXE9B', 'blDjPSaVIg7SK7jfGk9v1tMDQXXiheID6tgwFgRH');
-
 //////////////////////////////
 // Instances
 //////////////////////////////
-
+var detailInstance;
 var photoGallery = new PhotoCollection();
-
+var starterView = new AppView();
 
 $('.submit-photo').click(function() {
 
@@ -30,51 +30,9 @@ $('.submit-photo').click(function() {
 	photo = new Parse.Object('Photo');
 	photo.set('description', captionValue);
 	photo.set('photo', parseFile);
-	console.log(photo);
-	console.log(parseFile);
+	// console.log(parseFile);
 	photo.save();
 });
-
-
-
-// joe: use fetch instead of query & add a collection
-// date: ["insert-your-collection-name"].fetch({add:true}); <<<<< MISSED/DONT UNDERSTAND WHY
-
-photoGallery.fetch({
-		add: true,
-		success: function (results) {
-			console.log('This is the results', results);
-			alert("Successfully retrieved " + results.length + ".");
-		},
-		error: function(error) {
-		alert("Error: " + error.code + " " + error.message);
-		}
-	}).done(function(){
-		photoGallery.each(function (photoModel){
-			console.log('photoModel', photoModel)
-			new PhotoView({model: photoModel});
-		});
-});
-
-/*function retrieve() {
-	var Photo = Parse.Object.extend("Photo");
-	console.log(Photo);
-	debugger
-	var query = new Parse.Query(Photo);
-	query.descending('createdAt');
-	query.limit(25);
-	query.find({
-		success: function (results) {
-		alert("Successfully retrieved " + results.length + ".");
-			_.each(results, function (photoModel){
-				console.log('photoModel is', photoModel)
-			})
-		},
-		error: function(error) {
-		alert("Error: " + error.code + " " + error.message);
-		}
-	});
-}*/
 
 ///////////////////////////////////////
 /// references

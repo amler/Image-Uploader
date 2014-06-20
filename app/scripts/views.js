@@ -1,4 +1,5 @@
-var detailInstance = null;
+'use strict';
+
 //////////////////////////////
 // Thumbnail View
 //////////////////////////////	
@@ -15,21 +16,18 @@ var PhotoView = Parse.View.extend({
 		// this.model.on('change', this.render)
 		$('.photo-container').append(this.el);
 		this.render();
-		
 	},
 
 	render: function(){
-		debugger
 		var renderedTemplate = this.template(this.model.attributes);
-		
-		console.log(this.model);
-    // empty div // html render the variable above
 		this.$el.html(renderedTemplate);
-
 	},
 
 	showImageDetail: function(){
-		detailInstance = new DetailView({model: this.model});
+		if (detailInstance !== null){
+			detailInstance.remove();
+			detailInstance = new DetailView({model: this.model});
+		}
 	}
 });
 
@@ -39,16 +37,45 @@ var PhotoView = Parse.View.extend({
 
 var DetailView = Parse.View.extend({
 	template: _.template($('.detail-display-template').text()),
-	className: 'main-image-holder', 
+	className: 'image-editor', 
 		
 	initialize: function() {
-		$('.photo-container').append(this.el);
+		// console.log('this is in the detailview ',photoGallery);
+		photoGallery.on('add', function(){
+			new PhotoView();
+		});
+		$('.image-detail').append(this.el);
 		this.render();
-		console.log('This is the DetailView');
 	},
 
 	render: function(){
 		var renderedTemplate = this.template(this.model.attributes)
 		this.$el.html(renderedTemplate);
 	}
-})
+});
+
+//////////////////////////////
+// App View
+//////////////////////////////
+
+var AppView = Parse.View.extend({	
+	initialize: function() {
+		// joe: use fetch instead of query & add a collection
+		// date: ['insert-your-collection-name'].fetch({add:true}); <<<<< MISSED/DONT UNDERSTAND WHY
+		photoGallery.fetch({
+				add: true,
+				success: function (results) {
+					// console.log('This is the results', results);
+					// console.log('Successfully retrieved ' + results.length + '.');
+				},
+				error: function(error) {
+				alert('Error: ' + error.code + ' ' + error.message);
+				}
+			}).done(function(){
+				photoGallery.each(function (photoModel){
+					new PhotoView({model: photoModel});	
+				});
+				detailInstance = new DetailView({model: photoGallery.first()});
+		});
+	}
+});
