@@ -41,11 +41,13 @@ var DetailView = Parse.View.extend({
 		
 	initialize: function() {
 		// console.log('this is in the detailview ',photoGallery);
-		photoGallery.on('add', function(){
-			new PhotoView();
+		photoGallery.on('add', function(model){
+			console.log(model);
+			new PhotoView({model: model});
 		});
 		$('.image-detail').append(this.el);
 		this.render();
+		console.log('This is the DetailView');
 	},
 
 	render: function(){
@@ -58,21 +60,23 @@ var DetailView = Parse.View.extend({
 // App View
 //////////////////////////////
 
-var AppView = Parse.View.extend({	
+var AppView = Parse.View.extend({
+		
 	initialize: function() {
 		// joe: use fetch instead of query & add a collection
 		// date: ['insert-your-collection-name'].fetch({add:true}); <<<<< MISSED/DONT UNDERSTAND WHY
 		photoGallery.fetch({
 				add: true,
 				success: function (results) {
-					// console.log('This is the results', results);
-					// console.log('Successfully retrieved ' + results.length + '.');
+					console.log('This is the results', results);
+					console.log('Successfully retrieved ' + results.length + '.');
 				},
 				error: function(error) {
 				alert('Error: ' + error.code + ' ' + error.message);
 				}
 			}).done(function(){
 				photoGallery.each(function (photoModel){
+					// console.log('photoModel', photoModel);
 					new PhotoView({model: photoModel});	
 				});
 				detailInstance = new DetailView({model: photoGallery.first()});
