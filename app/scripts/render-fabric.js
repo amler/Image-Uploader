@@ -17,23 +17,25 @@ var rect = new fabric.Rect({
 
 canvas.add(rect);
 
-//////////////////////////
-// Button add to canvas
-//////////////////////////
-$('.add-rectangle').click(function() {
-      var rect = new fabric.Rect({ width: 10, height: 20, fill: '#f55', opacity: 0.7 });
-      canvas.add(rect);
-
-      console.log(rect);
-})
 
 //////////////////////////
 // Image from a url
 //////////////////////////
 
-fabric.Image.fromURL('http://th04.deviantart.net/fs31/PRE/i/2008/200/c/2/ScrappinCop_Big_Ole_Googly_Eye_by_debh945.png', function(oImg) {
-  oImg.scale(0.1);
-  canvas.add(oImg);
+//////////////////////////
+// Button add to canvas
+//////////////////////////
+$('.add-rectangle').click(function() {
+fabric.Image.fromURL('http://th04.deviantart.net/fs31/PRE/i/2008/200/c/2/ScrappinCop_Big_Ole_Googly_Eye_by_debh945.png', function(image) {
+      image.scale(0.1);
+      canvas.add(image);
+});
+
+})
+
+fabric.Image.fromURL('http://th04.deviantart.net/fs31/PRE/i/2008/200/c/2/ScrappinCop_Big_Ole_Googly_Eye_by_debh945.png', function(image) {
+      image.scale(0.1);
+      canvas.add(image);
 });
 
 //////////////////////////
@@ -44,3 +46,20 @@ var path = new fabric.Path('M 0 0 L 200 100 L 170 200 z');
 path.set({ left: 120, top: 120 });
 canvas.add(path);
 
+
+//////////////////////////
+// Image filter
+//////////////////////////
+
+fabric.Image.fromURL('http://theironyard.com/images/education/academy/front-end-2/graduates/joe-tamburro.jpg', function(img) {
+  // img.filters.push(new fabric.Image.filters.Sepia());
+  // img.applyFilters(canvas.renderAll.bind(canvas));
+      img.scale(0.5);
+  canvas.add(img);
+});
+
+fabric.Image.fromURL('images/pug.jpg', function(img) {
+  img.filters.push(new fabric.Image.filters.Sepia());
+  img.applyFilters(canvas.renderAll.bind(canvas));
+  canvas.add(img);
+});

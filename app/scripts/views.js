@@ -42,7 +42,7 @@ var DetailView = Parse.View.extend({
 	initialize: function() {
 		// console.log('this is in the detailview ',photoGallery);
 		photoGallery.on('add', function(model){
-			console.log(model);
+			console.log('an add event ', this.model);
 			new PhotoView({model: model});
 		});
 		$('.image-detail').append(this.el);
