@@ -8,7 +8,9 @@ body {
     margin: 0;
     padding: 0;
 }
-
+canvas {
+    border: 1px solid blue;
+}
 .header {
     background-color: #369;
     max-width: 100%;
