@@ -6,39 +6,49 @@
 
 var canvas = new fabric.Canvas('canvas');
 
-canvas.on('mouse:down', function(options) {
-      console.log(options.e.clientX, options.e.clientY);
-      if (options.target) {
-            console.log('an object was clicked! ', options.target.type);
-      }
-});
+
+$('.save-canvas').click(function (){
+  var jsonString = JSON.stringify(canvas);
+  console.log(jsonString);
+
+})
+
+////////// NOTE TO SELF: experiment with creating shapes at loction points
+/*canvas.on('mouse:down', function(options) {
+    console.log(options.e.clientX, options.e.clientY);
+    if (options.target) {
+        console.log('an object was clicked! ', options.target.type);
+    }
+});*/
 
 /*canvas.on('mouse:move', function(options){
-      console.log(options.e.clientX, options.e.clientY);
+  console.log(options.e.clientX, options.e.clientY);
 })*/
+
 //////////////////////////
 // simple rectangle
 //////////////////////////
+
 /*var rect = new fabric.Rect({
-      top : 100,
-      left : 100,
-      width : 60,
-      height : 100,
-      fill : 'red'
+  top : 100,
+  left : 100,
+  width : 60,
+  height : 100,
+  fill : 'red'
 });
 
 canvas.add(rect);*/
 
-
 //////////////////////////
 // Button add to canvas
 //////////////////////////
+
 $('.add-rectangle').click(function() {
-      fabric.Image.fromURL('http://th04.deviantart.net/fs31/PRE/i/2008/200/c/2/ScrappinCop_Big_Ole_Googly_Eye_by_debh945.png', function(image) {
-            image.scale(0.1);
-            canvas.add(image);
-      });
-})
+    fabric.Image.fromURL('http://th04.deviantart.net/fs31/PRE/i/2008/200/c/2/ScrappinCop_Big_Ole_Googly_Eye_by_debh945.png', function(image) {
+        image.scale(0.1);
+        canvas.add(image);
+    });
+});
 
 // Initial Googly Eye loader
 /*
@@ -60,10 +70,10 @@ canvas.add(path);*/
 // Image filter
 //////////////////////////
 
-fabric.Image.fromURL('http://theironyard.com/images/education/academy/front-end-2/graduates/joe-tamburro.jpg', function(img) {
-      canvas.add(img);
-      img.left = 400;
-});
+/*fabric.Image.fromURL('http://theironyard.com/images/education/academy/front-end-2/graduates/joe-tamburro.jpg', function(img) {
+    canvas.add(img);
+    img.left = 400;
+});*/
 
 /*fabric.Image.fromURL('images/pug.jpg', function(img) {
       img.filters.push(new fabric.Image.filters.Sepia());
@@ -71,17 +81,17 @@ fabric.Image.fromURL('http://theironyard.com/images/education/academy/front-end-
       img.top = 400;
       canvas.add(img);
 });*/
+/*var imageURL = 'http://1.media.dorkly.cvcdn.com/57/82/014c67406a541837b841a9b7ac6cfed9-corgi-link-cosplay.jpg';
+fabric.Image.fromURL(imageURL, function(img) {
+    img.scale(0.5);
 
-fabric.Image.fromURL('http://1.media.dorkly.cvcdn.com/57/82/014c67406a541837b841a9b7ac6cfed9-corgi-link-cosplay.jpg', function(img) {
-      img.scale(0.5);
+    img.filters.push(new fabric.Image.filters.Sepia());
 
-      //img.filters.push(new fabric.Image.filters.Sepia());
-      
-      // applyFilters produces  Failed to execute 'getImageData' on 'CanvasRenderingContext2D': The canvas has been tainted by cross-origin data.
-      // img.applyFilters(canvas.renderAll.bind(canvas));
-      canvas.add(img);
+    // applyFilters produces  Failed to execute 'getImageData' on 'CanvasRenderingContext2D': The canvas has been tainted by cross-origin data.
+    img.applyFilters(canvas.renderAll.bind(canvas));
+    canvas.add(img);
 });
-
+*/
 //////////////////////////
 // Gradient filter
 //////////////////////////
@@ -110,16 +120,16 @@ canvas.add(circle);*/
 //////////////////////////
 
 $('.submit-text').click(function(){
-      var fabricText = $('.text-canvas').val();
-      var canvasText = new fabric.Text(fabricText, {
-            fontFamily: 'Arial',
-            fontWeight: 'bold',
-            fontSize: 40,
-            textBackgroundColor: 'F08'
-      });
-      canvas.add(canvasText);
-      $('.text-canvas').val('');
-})
+    var fabricText = $('.text-canvas').val();
+    var canvasText = new fabric.Text(fabricText, {
+        fontFamily: 'Arial',
+        fontWeight: 'bold',
+        fontSize: 40,
+        textBackgroundColor: 'F08'
+    });
+    canvas.add(canvasText);
+    $('.text-canvas').val('');
+});
 
 //////////////////////////
 // Group

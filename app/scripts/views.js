@@ -50,7 +50,7 @@ var DetailView = Parse.View.extend({
 	},
 
 	render: function(){
-		var renderedTemplate = this.template(this.model.attributes)
+		var renderedTemplate = this.template(this.model.attributes);
 		this.$el.html(renderedTemplate);
 	}
 });
@@ -66,7 +66,7 @@ var AppView = Parse.View.extend({
 		// date: ['insert-your-collection-name'].fetch({add:true}); <<<<< MISSED/DONT UNDERSTAND WHY
 		photoGallery.on('add', function(pic) {
 			//console.log('I am the on method')
-			new PhotoView({model: pic})
+			new PhotoView({model: pic});
 		});
 
 		photoGallery.fetch({
@@ -79,6 +79,6 @@ var AppView = Parse.View.extend({
 			error: function(error) {
 				alert('Error: ' + error.code + ' ' + error.message);
 			}
-		})
+		});
 	}
 });

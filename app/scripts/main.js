@@ -5,7 +5,7 @@ Parse.initialize('9FROBMPXAABxeBZaG0K7j8wlnPtaM5sFYJLeXE9B', 'blDjPSaVIg7SK7jfGk
 //////////////////////////////
 var detailInstance;
 var photoGallery = new PhotoCollection();
-var starterView = new AppView();
+var siteView = new AppView();
 
 $('.submit-photo').click(function() {
 	var fileName = $('.file-name').val();
@@ -29,11 +29,14 @@ $('.submit-photo').click(function() {
 		photo.set('photoURL', parseFile.url());
 		photo.save().done(function(){
 			photoGallery.add(photo);
+			document.getElementByClassName("image-upload").value = "";
+			$('.file-name').val('');
+			$('.photo-uploader').val('');
 		});
 
 	}, function(error) {
 	// The file either could not be read, or could not be saved to Parse.
-	    alert('Failed to create new object, with error code: ' + error.description);
+	    alert('Failed to create new object, with error code: ' + error);
 	});
 });
 

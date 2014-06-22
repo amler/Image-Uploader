@@ -25,10 +25,10 @@
         <![endif]-->
         <div class="header">
             <div class="uploader-wrap">
-                <input type="file" class="image-upload">
-                <input class="photo-uploader" placeholder="Enter Caption">
-                <input class="file-name" placeholder="File Name">
-                <button class="submit-photo">Upload</button>
+                <input type="file" class="image-upload" tabindex="1">
+                <input class="photo-uploader" placeholder="Enter Caption" tabindex="2">
+                <input class="file-name" placeholder="File Name" tabindex="3">
+                <button class="submit-photo" tabindex="4">Upload</button>
             </div>
         </div>
         <div class="content">
@@ -36,6 +36,7 @@
                 <input class="text-canvas" placeholder="Type something">
                 <button class="submit-text">Render Text</button>
                 <button class="add-rectangle">Add Googly Eye</button>
+                <button class="save-canvas">Save</button>
                 <canvas id="canvas" width="900" height="800"></canvas>
                 
             </div>

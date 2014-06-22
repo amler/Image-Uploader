@@ -6,4 +6,4 @@ var Photo = Parse.Object.extend({
 
 var PhotoCollection = Parse.Collection.extend({
 	model: Photo
-})
+});
