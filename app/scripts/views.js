@@ -34,26 +34,74 @@ var PhotoView = Parse.View.extend({
 //////////////////////////////
 // Detail View
 //////////////////////////////
+var canvas = new fabric.Canvas('canvas');
+var fabricPhoto;
 
 var DetailView = Parse.View.extend({
 	template: _.template($('.detail-display-template').text()),
+	canvasTemplate: _.template($('.canvas-editor-template').text()),
 	className: 'image-editor',
 
-	// events: {
-	// 	'click'
-	// }
+	events: {
+		// 'click .edit-photo'		: 'addCanvas',
+		'click .add-googly-eye'	: 'addEyeImage'
+	},
 		
 	initialize: function() {
 		$('.image-detail').append(this.el);
 		this.render();
+		return this;
 		// console.log('This is the DetailView'); <= Tip from Joe to add to confirm.
 	},
 
-	render: function(){
+	/*render: function(){
 		var renderedTemplate = this.template(this.model.attributes);
 		this.$el.html(renderedTemplate);
+	},*/
+
+	// addCanvas: function() {
+	render: function(){
+		fabricPhoto = this.model.attributes;
+ 		var renderedTemplate = this.canvasTemplate(this.model.attributes);
+		this.$el.html(renderedTemplate);
+		return this;
+	},
+
+	addEyeImage: function(){
+		// console.log('This is from your addEyeImage ', fabricPhoto.photoURL)
+		fabric.Image.fromURL(fabricPhoto.photoURL, function(image) {
+	        image.scale(0.1);
+	        canvas.add(image);
+	    });
 	}
 });
+
+/*fabric.Image.fromURL('http://th04.deviantart.net/fs31/PRE/i/2008/200/c/2/ScrappinCop_Big_Ole_Googly_Eye_by_debh945.png', function(image){
+	var detailInstance = new DetailView();
+	detailInstance.addEyeImage(image);
+});
+
+$('.add-googly-eye').click(function() {
+    fabric.Image.fromURL('http://th04.deviantart.net/fs31/PRE/i/2008/200/c/2/ScrappinCop_Big_Ole_Googly_Eye_by_debh945.png', function(image) {
+        image.scale(0.1);
+        canvas.add(image);
+    });
+});*/
+
+
+/*
+
+$('.submit-text').click(function(){
+    var fabricText = $('.text-canvas').val();
+    var canvasText = new fabric.Text(fabricText, {
+        fontFamily: 'Arial',
+        fontWeight: 'bold',
+        fontSize: 40,
+        textBackgroundColor: 'F08'
+    });
+    canvas.add(canvasText);
+    $('.text-canvas').val('');
+});*/
 
 //////////////////////////////
 // App View

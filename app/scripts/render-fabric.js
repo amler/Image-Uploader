@@ -4,14 +4,14 @@
 // FABRIC JS PRACTICE
 //////////////////////////
 
-var canvas = new fabric.Canvas('canvas');
+/*var canvas = new fabric.Canvas('canvas');
 
 
 $('.save-canvas').click(function (){
   var jsonString = JSON.stringify(canvas);
   console.log(jsonString);
 
-})
+})*/
 
 ////////// NOTE TO SELF: experiment with creating shapes at loction points
 /*canvas.on('mouse:down', function(options) {
@@ -42,13 +42,14 @@ canvas.add(rect);*/
 //////////////////////////
 // Button add to canvas
 //////////////////////////
-
-$('.add-rectangle').click(function() {
-    fabric.Image.fromURL('http://th04.deviantart.net/fs31/PRE/i/2008/200/c/2/ScrappinCop_Big_Ole_Googly_Eye_by_debh945.png', function(image) {
-        image.scale(0.1);
-        canvas.add(image);
-    });
-});
+/*
+$('.add-googly-eye').click(function() {
+    // fabric.Image.fromURL('http://th04.deviantart.net/fs31/PRE/i/2008/200/c/2/ScrappinCop_Big_Ole_Googly_Eye_by_debh945.png', function(image) {
+    //     image.scale(0.1);
+    //     canvas.add(image);
+    // });
+  console.log(FML!!!!)
+});*/
 
 // Initial Googly Eye loader
 /*
@@ -119,7 +120,7 @@ canvas.add(circle);*/
 // Fabric Text Button
 //////////////////////////
 
-$('.submit-text').click(function(){
+/*$('.submit-text').click(function(){
     var fabricText = $('.text-canvas').val();
     var canvasText = new fabric.Text(fabricText, {
         fontFamily: 'Arial',
@@ -129,7 +130,7 @@ $('.submit-text').click(function(){
     });
     canvas.add(canvasText);
     $('.text-canvas').val('');
-});
+});*/
 
 //////////////////////////
 // Group

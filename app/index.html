@@ -24,6 +24,7 @@
             <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
         <![endif]-->
         <div class="header">
+
             <div class="uploader-wrap">
                 <input type="file" class="image-upload" tabindex="1">
                 <input class="photo-uploader" placeholder="Enter Caption" tabindex="2">
@@ -33,14 +34,9 @@
         </div>
         <div class="content">
             <div class="image-detail">
-                <input class="text-canvas" placeholder="Type something">
-                <button class="submit-text">Render Text</button>
-                <button class="add-rectangle">Add Googly Eye</button>
-                <button class="save-canvas">Save</button>
-                <canvas id="canvas" width="900" height="800"></canvas>
-                
+                <!-- Photo Detail Render Container -->    
             </div>
-                <!-- Photo Detail Render Container -->
+            
             <div class="photo-container">
                 <!-- Photo Thumbnails Render Container -->
             </div>
@@ -57,10 +53,17 @@
                 </div>
             </div>
             <div class="editor">
-                <input type="file" class="image-upload">
-                <input class="photo-uploader" placeholder="Enter Caption">
-                <button class="submit-photo">Upload</button>
+                <button class="edit-photo">Edit</button>
             </div>
+        </script>
+
+        <!-- Canvas script-->
+        <script type="text/template" class="canvas-editor-template">
+            <input class="text-canvas" placeholder="Type something">
+            <button class="submit-text">Render Text</button>
+            <button class="add-googly-eye">Add Googly Eye</button>
+            <button class="save-canvas">Save</button>
+            <canvas id="canvas" width="900" height= "800"></canvas>
         </script>
         
         <!-- Thumbnails > photo-container -->
