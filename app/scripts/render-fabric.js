@@ -1,9 +1,21 @@
+'use strict';
+
 //////////////////////////
 // FABRIC JS PRACTICE
 //////////////////////////
 
 var canvas = new fabric.Canvas('canvas');
 
+canvas.on('mouse:down', function(options) {
+      console.log(options.e.clientX, options.e.clientY);
+      if (options.target) {
+            console.log('an object was clicked! ', options.target.type);
+      }
+});
+
+/*canvas.on('mouse:move', function(options){
+      console.log(options.e.clientX, options.e.clientY);
+})*/
 //////////////////////////
 // simple rectangle
 //////////////////////////
@@ -15,12 +27,8 @@ var canvas = new fabric.Canvas('canvas');
       fill : 'red'
 });
 
-canvas.add(rect);
+canvas.add(rect);*/
 
-*/
-//////////////////////////
-// Image from a url
-//////////////////////////
 
 //////////////////////////
 // Button add to canvas
@@ -54,13 +62,15 @@ canvas.add(path);*/
 
 fabric.Image.fromURL('http://theironyard.com/images/education/academy/front-end-2/graduates/joe-tamburro.jpg', function(img) {
       canvas.add(img);
+      img.left = 400;
 });
 
-fabric.Image.fromURL('images/pug.jpg', function(img) {
+/*fabric.Image.fromURL('images/pug.jpg', function(img) {
       img.filters.push(new fabric.Image.filters.Sepia());
       img.applyFilters(canvas.renderAll.bind(canvas));
+      img.top = 400;
       canvas.add(img);
-});
+});*/
 
 fabric.Image.fromURL('http://1.media.dorkly.cvcdn.com/57/82/014c67406a541837b841a9b7ac6cfed9-corgi-link-cosplay.jpg', function(img) {
       img.scale(0.5);
@@ -76,7 +86,7 @@ fabric.Image.fromURL('http://1.media.dorkly.cvcdn.com/57/82/014c67406a541837b841
 // Gradient filter
 //////////////////////////
 
-var circle = new fabric.Circle({
+/*var circle = new fabric.Circle({
   left: 300,
   top: 300,
   radius: 80
@@ -93,17 +103,32 @@ circle.setGradient('fill', {
   }
 });
 
-canvas.add(circle);
+canvas.add(circle);*/
 
 //////////////////////////
-// Fabric Text Button test
+// Fabric Text Button
 //////////////////////////
 
 $('.submit-text').click(function(){
       var fabricText = $('.text-canvas').val();
       var canvasText = new fabric.Text(fabricText, {
-            fontFamily: 'Arial'
+            fontFamily: 'Arial',
+            fontWeight: 'bold',
+            fontSize: 40,
+            textBackgroundColor: 'F08'
       });
       canvas.add(canvasText);
+      $('.text-canvas').val('');
 })
 
+//////////////////////////
+// Group
+//////////////////////////
+
+/*var group = new fabric.Group([ rect, circle ], {
+  left: 150,
+  top: 100,
+  angle: -10
+});
+
+canvas.add(group);*/

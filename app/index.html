@@ -27,6 +27,7 @@
             <div class="uploader-wrap">
                 <input type="file" class="image-upload">
                 <input class="photo-uploader" placeholder="Enter Caption">
+                <input class="file-name" placeholder="File Name">
                 <button class="submit-photo">Upload</button>
             </div>
         </div>
@@ -37,8 +38,8 @@
                 <button class="add-rectangle">Add Googly Eye</button>
                 <canvas id="canvas" width="900" height="800"></canvas>
                 
-                <!-- Photo Detail Render Container -->
             </div>
+                <!-- Photo Detail Render Container -->
             <div class="photo-container">
                 <!-- Photo Thumbnails Render Container -->
             </div>
@@ -49,7 +50,7 @@
         <!-- Detail > image-detail -->
         <script type="text/template" class="detail-display-template">
             <div class="photo-detail">
-                <img src="<%= photo.url() %>" />
+                <img src="<%= photoURL %>" />
                 <div class="caption-container">
                     <p><%= description %></p>
                 </div>
@@ -64,7 +65,7 @@
         <!-- Thumbnails > photo-container -->
         <script type="text/template" class="thumbnails-display-template">
             <div class="thumbnail-container">
-                <img class="thumbnail-image" src="<%= photo.url() %>">
+                <img class="thumbnail-image" src="<%= photoURL %>">
             </div>
                 <p><%= description %></p>
         </script>

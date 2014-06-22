@@ -37,17 +37,16 @@ var PhotoView = Parse.View.extend({
 
 var DetailView = Parse.View.extend({
 	template: _.template($('.detail-display-template').text()),
-	className: 'image-editor', 
+	className: 'image-editor',
+
+	// events: {
+	// 	'click'
+	// }
 		
 	initialize: function() {
-		// console.log('this is in the detailview ',photoGallery);
-		photoGallery.on('add', function(model){
-			console.log('an add event ', this.model);
-			new PhotoView({model: model});
-		});
 		$('.image-detail').append(this.el);
 		this.render();
-		console.log('This is the DetailView');
+		// console.log('This is the DetailView'); <= Tip from Joe to add to confirm.
 	},
 
 	render: function(){
@@ -65,21 +64,21 @@ var AppView = Parse.View.extend({
 	initialize: function() {
 		// joe: use fetch instead of query & add a collection
 		// date: ['insert-your-collection-name'].fetch({add:true}); <<<<< MISSED/DONT UNDERSTAND WHY
-		photoGallery.fetch({
-				add: true,
-				success: function (results) {
-					console.log('This is the results', results);
-					console.log('Successfully retrieved ' + results.length + '.');
-				},
-				error: function(error) {
-				alert('Error: ' + error.code + ' ' + error.message);
-				}
-			}).done(function(){
-				photoGallery.each(function (photoModel){
-					// console.log('photoModel', photoModel);
-					new PhotoView({model: photoModel});	
-				});
-				detailInstance = new DetailView({model: photoGallery.first()});
+		photoGallery.on('add', function(pic) {
+			//console.log('I am the on method')
+			new PhotoView({model: pic})
 		});
+
+		photoGallery.fetch({
+			add: true,
+			success: function (results) {
+				/*console.log('This is the results', results);
+				console.log('Successfully retrieved ' + results.length + '.');*/
+				detailInstance = new DetailView({model: photoGallery.first()});
+			},
+			error: function(error) {
+				alert('Error: ' + error.code + ' ' + error.message);
+			}
+		})
 	}
 });

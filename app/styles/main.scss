@@ -8,9 +8,18 @@ body {
     margin: 0;
     padding: 0;
 }
+
 canvas {
     border: 1px solid blue;
 }
+
+input {
+    border-radius: 3px;
+    border: none;
+    height: 25px;
+    width: 200px;
+}
+
 .header {
     background-color: #369;
     max-width: 100%;
@@ -47,14 +56,6 @@ canvas {
             &:hover::before {
                 color: #3385D6;
             }
-        }
-
-
-        .photo-uploader {
-            border-radius: 3px;
-            border: none;
-            height: 25px;
-            width: 200px;
         }
 
         .submit-photo {
